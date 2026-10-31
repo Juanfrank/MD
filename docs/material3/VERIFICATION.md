@@ -23,11 +23,12 @@ Legend: OK = confirmed by the site; PARTIAL = core claim confirmed, some part no
 
 ## Extra spot checks on `token` guidelines
 
-- State layer opacities: hover 8%, focus 10%, press 10%, drag 16%: match the registry.
+- State layer opacities: the site says hover 8%, focus 10%, press 10%, drag 16%. The registry (`@material/web` v0_192) has hover 0.08, **focus 0.12, pressed 0.12**, dragged 0.16. So focus and pressed DIFFER (12% vs 10%). An earlier version of this file wrongly said they matched. `tools/material3/audit.py` accepts both values for these two tokens.
 - Colour roles: the site says "26 standard color roles" and "all 45 color roles" in one image caption; the registry counts 49 `md.sys.color.*`. Not reconciled (different counting, possibly fixed/surface variants).
 
 ## Suggested fixes (not applied)
 
 1. Re-base `spacing.*` on 8dp with nested 2/4/6/10dp, add 72dp, drop or mark 12/20/28 as custom, fix the rule text.
-2. Mark `layout.gutter` and `a11y.contrast.prefers-more` as "implementation, no spec source".
-3. Reword `a11y.reduced-motion` to match the site.
+2. Decide whether focus/pressed should be 0.10 (site) or 0.12 (package).
+3. Mark `layout.gutter` and `a11y.contrast.prefers-more` as "implementation, no spec source".
+4. Reword `a11y.reduced-motion` to match the site.

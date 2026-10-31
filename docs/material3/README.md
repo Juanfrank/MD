@@ -10,6 +10,7 @@
 
 | `site/` | Text of the 375 pages of m3.material.io (see `site/INDEX.md`), crawled with `tools/material3/crawl_site.js` (Playwright, from the sitemap). Text, tables and image alt text only; not machine-checked against `guidelines.json`. About 10 pages (blog videos, a few overviews) are nearly empty because they have no text. |
 | `VERIFICATION.md` | Closed record of how the 36 `spec` guidelines compare with `site/`: 24 match, 7 partial, 3 differ (spacing steps 12/20/28dp), 2 have no source. Registry left unchanged. |
+| `AUDIT.md` + `tools/material3/audit.py` | Tool to audit any repository's CSS / token files against this registry (findings + coverage). Tests in `tools/tests/test_audit.py`. |
 
 Regenerate: `npm pack @material/web && mkdir w && tar xzf material-web-*.tgz -C w && python3 tools/material3/build_material3.py w`.
 

@@ -1,5 +1,7 @@
 # The 36 `spec` guidelines checked against `site/` (m3.material.io text)
 
+**Status: closed (2026-10-31).** The differences between the registry (`guidelines.json`, `curated.py`, `m3.css`) and the site are recorded here as they are. Nothing was changed in the registry or the CSS; the registry stays as it was, and this file is the record of where it differs from the site. The "Suggested fixes" at the end are left unapplied on purpose.
+
 Method: for each guideline, grep the crawled pages for the same number/claim. Only text, tables and image alt text were available (no diagrams), so "not found" means "not in the text", not "false".
 
 Legend: OK = confirmed by the site; PARTIAL = core claim confirmed, some part not found; WRONG = site says something different; NONE = nothing on the site to check (our implementation hook).

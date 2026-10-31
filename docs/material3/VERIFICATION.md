@@ -1,34 +1,84 @@
-# The 36 `spec` guidelines checked against `site/` (m3.material.io text)
+# The non-token guidelines checked against `site/` (m3.material.io text)
 
-**Status: closed (2026-10-31).** The differences between the registry (`guidelines.json`, `curated.py`, `m3.css`) and the site are recorded here as they are. Nothing was changed in the registry or the CSS; the registry stays as it was, and this file is the record of where it differs from the site. The "Suggested fixes" at the end are left unapplied on purpose.
+**Status: corrections applied (2026-10-31).** The first pass found 24 OK / 7 partial / 3 wrong / 2 without source for the 36 hand-written (`spec`) guidelines. The wrong and unsupported ones were fixed in `tools/material3/curated.py`, the CSS, tokens and registry were regenerated from `@material/web` v0_192, and the check is now a script instead of a one-off grep:
 
-Method: for each guideline, grep the crawled pages for the same number/claim. Only text, tables and image alt text were available (no diagrams), so "not found" means "not in the text", not "false".
+```
+python3 tools/material3/verify_spec.py            # table + exit 1 if any evidence stops matching
+python3 tools/material3/verify_spec.py --write    # refresh the table below
+```
 
-Legend: OK = confirmed by the site; PARTIAL = core claim confirmed, some part not found; WRONG = site says something different; NONE = nothing on the site to check (our implementation hook).
+Evidence lives in `spec_evidence.json` (a regex per claim, searched in `site/*.md` or in `m3.css`) and is enforced by `tools/tests/test_verify_spec.py`. Only text, tables and image alt text were crawled (no diagrams), and a regex match proves that the page says it, not that the page is right.
 
-| Result | Count | Guidelines |
-|---|---|---|
-| OK | 24 | `spacing.step.0,1,2,4,6,8,10,12,14,16` (0, 4, 8, 16, 24, 32, 40, 48, 56, 64dp); `layout.window.compact`, `layout.window.medium`; `layout.pane-spacer`; `layout.grid`; `a11y.touch-target`; `a11y.touch-gap`; `a11y.contrast.text`; `a11y.contrast.ui`; `a11y.focus`; `state.layer`; `color.theme.light`; `color.theme.dark`; `color.scrim`; `surface.base` |
-| PARTIAL | 7 | `layout.window.expanded/large/extra-large` (breakpoint and 24dp margin confirmed; 12 columns not stated in text); `a11y.contrast.level.medium/high` (the three contrast levels exist; 0.5 / 1.0 are not on the site); `a11y.disabled` (disabled behaviour confirmed; 12% / 38% not on the site); `a11y.reduced-motion` (site: subtle fades instead of slide/scale, no parallax or shape morphing; ours says "shorten/remove") |
-| WRONG | 3 | `spacing.step.3,5,7` (12, 20, 28dp) |
-| NONE | 2 | `layout.gutter` (8dp: not mentioned anywhere); `a11y.contrast.prefers-more` (CSS media query, not a spec item) |
+## What changed
 
-## Details
+| Before | After |
+|---|---|
+| 13 spacing steps `--md-sys-spacing-N` on a "4dp grid" (4, 12, 20, 28dp not official) | 14 tokens `--md-sys-measurement-space<pct>`: base unit space100 = 8dp, 0x-9x (0..72dp) plus nested 0.25x/0.5x/0.75x/1.25x (2, 4, 6, 10dp); ids `spacing.space*` |
+| focus / pressed state layer 0.12 (package) | 0.10 (site). Recorded in `tokens.json` `overrides` with both values; guideline source `site`. The auditor still accepts 0.12 |
+| `layout.gutter` and `prefers-contrast` listed as `spec` | source `impl` (no spec source) |
+| Window rules said "8dp gutters" (not on the site) | rule text is columns + margins; gutter lives only in `layout.gutter` (impl) |
+| Pane spacer "on large windows" | "medium breakpoint and up" (what the site says) |
+| `a11y.reduced-motion`: "shorten/remove transitions" | the site's wording (fades instead of slide/scale, no parallax or shape morphing) and what this CSS really does (zeroes the short durations) |
+| Contrast levels 0.5 / 1.0 presented as spec | marked as coming from material-color-utilities (the site names the levels, gives no numbers) |
+| 12% / 38% disabled opacities "not machine-verified" | checked against the official component tokens in `m3.css` (evidence `in: css`) |
 
-- **Breakpoints.** Site table: compact < 600, medium 600-839, expanded 840-1199, large 1200-1599, extra-large 1600+. Matches. Margins: 16dp compact, 24dp for the rest. Matches. Pane spacer 24dp (medium and up). Matches. Columns: 4 (compact) and 8 (medium) appear in image captions; 12 does not appear. The site now calls these "breakpoints" ("previously window size classes").
-- **Spacing (the real problem).** The site says the base unit is `space100` = 8dp, the main units are multiples of 8dp (range 0x-9x), and the only official nested units are 0.25x, 0.5x, 0.75x, 1.25x (2, 4, 6, 10dp). Our rule text "multiples of 4dp (8dp for layout)" is therefore inaccurate for all 13 steps, and 12, 20 and 28dp (1.5x, 2.5x, 3.5x) are not official tokens. Also missing: 72dp (9x) and the nested 2, 6, 10dp. The site names tokens `space100`, `space200`... ours are `spacing-1..16`.
-- **Touch target and gap.** 48x48dp confirmed. 8dp between targets is "in most cases", a recommendation, not a hard rule.
-- **Contrast.** 4.5:1 small text and 3:1 large text/graphics confirmed (large = 14pt bold / 18pt regular). `outline` (not `outline-variant`) gives at least 3:1 (confirmed). Disabled states are exempt.
-- **Scrim.** "Scrims use the scrim color role at an opacity of 32%." Exact match.
+Sources now: `token` 290 (exact, from `@material/web`), `site` 2, `spec` 35, `impl` 2.
 
-## Extra spot checks on `token` guidelines
+## Result
 
-- State layer opacities: the site says hover 8%, focus 10%, press 10%, drag 16%. The registry (`@material/web` v0_192) has hover 0.08, **focus 0.12, pressed 0.12**, dragged 0.16. So focus and pressed DIFFER (12% vs 10%). An earlier version of this file wrongly said they matched. `tools/material3/audit.py` accepts both values for these two tokens.
-- Colour roles: the site says "26 standard color roles" and "all 45 color roles" in one image caption; the registry counts 49 `md.sys.color.*`. Not reconciled (different counting, possibly fixed/surface variants).
+<!-- BEGIN GENERATED -->
+| Result | Count |
+|---|---|
+| impl | 2 |
+| ok | 32 |
+| partial | 5 |
 
-## Suggested fixes (not applied)
+| Guideline | Source | Result | Gap (what the site does not state) |
+|---|---|---|---|
+| `state.focus-state-layer-opacity` | site | ok |  |
+| `state.pressed-state-layer-opacity` | site | ok |  |
+| `spacing.space0` | spec | ok |  |
+| `spacing.space25` | spec | ok |  |
+| `spacing.space50` | spec | ok |  |
+| `spacing.space75` | spec | ok |  |
+| `spacing.space100` | spec | ok |  |
+| `spacing.space125` | spec | ok |  |
+| `spacing.space200` | spec | ok |  |
+| `spacing.space300` | spec | ok |  |
+| `spacing.space400` | spec | ok |  |
+| `spacing.space500` | spec | ok |  |
+| `spacing.space600` | spec | ok |  |
+| `spacing.space700` | spec | ok |  |
+| `spacing.space800` | spec | ok |  |
+| `spacing.space900` | spec | ok |  |
+| `layout.window.compact` | spec | ok |  |
+| `layout.window.medium` | spec | ok |  |
+| `layout.window.expanded` | spec | partial | 12 columns is not stated in the page text |
+| `layout.window.large` | spec | partial | 12 columns is not stated in the page text |
+| `layout.window.extra-large` | spec | partial | 12 columns is not stated in the page text |
+| `layout.gutter` | impl | impl | no gutter value on m3.material.io (text) |
+| `layout.pane-spacer` | spec | ok |  |
+| `layout.grid` | spec | ok |  |
+| `a11y.touch-target` | spec | ok |  |
+| `a11y.touch-gap` | spec | ok |  |
+| `a11y.contrast.text` | spec | ok |  |
+| `a11y.contrast.ui` | spec | ok |  |
+| `a11y.contrast.level.medium` | spec | partial | the levels exist but 0.5 is not on the site (it comes from material-color-utilities) |
+| `a11y.contrast.level.high` | spec | partial | the levels exist but 1.0 is not on the site (it comes from material-color-utilities) |
+| `a11y.contrast.prefers-more` | impl | impl | CSS media query hook, not an M3 spec item |
+| `a11y.reduced-motion` | spec | ok |  |
+| `a11y.focus` | spec | ok |  |
+| `a11y.disabled` | spec | ok |  |
+| `state.layer` | spec | ok |  |
+| `color.theme.light` | spec | ok |  |
+| `color.theme.dark` | spec | ok |  |
+| `color.scrim` | spec | ok |  |
+| `surface.base` | spec | ok |  |
+<!-- END GENERATED -->
 
-1. Re-base `spacing.*` on 8dp with nested 2/4/6/10dp, add 72dp, drop or mark 12/20/28 as custom, fix the rule text.
-2. Decide whether focus/pressed should be 0.10 (site) or 0.12 (package).
-3. Mark `layout.gutter` and `a11y.contrast.prefers-more` as "implementation, no spec source".
-4. Reword `a11y.reduced-motion` to match the site.
+## Still open
+
+- 12 columns for expanded / large / extra-large: the layout pages state margins and breakpoints but not the column count in text.
+- Contrast level numbers (0.5, 1.0) and the exact `data-contrast` hook are ours.
+- Colour roles: the site says "26 standard color roles" and, in one image caption, "45"; the registry has 49 `md.sys.color.*` from the package. Not reconciled (counting differs: fixed, surface-container and inverse roles).
+- Focus / pressed 0.10 follows the site; if the package is right and the site stale, flip `SITE_OVERRIDES` in `curated.py` and rebuild.

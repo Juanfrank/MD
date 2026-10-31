@@ -77,6 +77,7 @@ def main(pkg):
     modes = {r: {"light": color["light"][r], "dark": color["dark"][r]} for r in color["light"]}
     tokens = {"source": "@material/web tokens v0_192", "palette": palette, "typeface": typeface,
               "sys_color": modes, "sys": sysd, "typescale": scale, "components": comps}
+    curated.apply_site_overrides(tokens)
     os.makedirs(OUT, exist_ok=True)
     json.dump(tokens, open(os.path.join(OUT, "tokens.json"), "w"), indent=1, sort_keys=True)
     open(os.path.join(OUT, "m3.css"), "w").write(curated.render_css(tokens))

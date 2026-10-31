@@ -1,0 +1,64 @@
+{
+  "_doc": "Evidence for every non-token guideline. in=site: regex must match in docs/material3/site/<file or glob>; in=css: regex must match in m3.css. status ok = all evidence matches and covers the whole rule; partial = evidence matches but `gap` says what the source does not state; impl = implementation choice, no spec source.",
+  "spacing.space0": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space25": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "0\\.25x, 0\\.5x, 0\\.75x"}, {"file": "styles__spacing__tokens.md", "pattern": "2dp, 4dp, 6dp, and 10dp"}]},
+  "spacing.space50": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "0\\.25x, 0\\.5x, 0\\.75x"}, {"file": "styles__spacing__tokens.md", "pattern": "2dp, 4dp, 6dp, and 10dp"}]},
+  "spacing.space75": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "0\\.25x, 0\\.5x, 0\\.75x"}, {"file": "styles__spacing__tokens.md", "pattern": "2dp, 4dp, 6dp, and 10dp"}]},
+  "spacing.space100": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "space100 is 8dp"}]},
+  "spacing.space125": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "1\\.25x nested units"}, {"file": "styles__spacing__tokens.md", "pattern": "2dp, 4dp, 6dp, and 10dp"}]},
+  "spacing.space200": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space300": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space400": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space500": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space600": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space700": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space800": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "spacing.space900": {"status": "ok", "evidence": [{"file": "styles__spacing__tokens.md", "pattern": "multiples of 8dp"}, {"file": "styles__spacing__tokens.md", "pattern": "range covers 0x to 9x"}]},
+  "layout.window.compact": {"status": "ok", "evidence": [
+    {"file": "foundations__layout__breakpoints__overview.md", "pattern": "\\| Compact \\| Under 600dp"},
+    {"file": "foundations__layout__breakpoints__compact.md", "pattern": "use 16dp margins"},
+    {"file": "foundations__layout__grids-spacing__grids.md", "pattern": "compact screen, with 4 columns"}]},
+  "layout.window.medium": {"status": "ok", "evidence": [
+    {"file": "foundations__layout__breakpoints__overview.md", "pattern": "\\| Medium \\| 600.839dp"},
+    {"file": "foundations__layout__breakpoints__medium.md", "pattern": "margins of 24dp"},
+    {"file": "foundations__layout__grids-spacing__grids.md", "pattern": "foldable screen, with 8 columns"}]},
+  "layout.window.expanded": {"status": "partial", "gap": "12 columns is not stated in the page text", "evidence": [
+    {"file": "foundations__layout__breakpoints__overview.md", "pattern": "\\| Expanded \\| 840.1199dp"},
+    {"file": "foundations__layout__breakpoints__expanded.md", "pattern": "margin of 24dp"}]},
+  "layout.window.large": {"status": "partial", "gap": "12 columns is not stated in the page text", "evidence": [
+    {"file": "foundations__layout__breakpoints__overview.md", "pattern": "\\| Large \\| 1200.1599dp"},
+    {"file": "foundations__layout__breakpoints__large-extra-large.md", "pattern": "margin of 24dp"}]},
+  "layout.window.extra-large": {"status": "partial", "gap": "12 columns is not stated in the page text", "evidence": [
+    {"file": "foundations__layout__breakpoints__overview.md", "pattern": "\\| Extra-large \\| 1600dp\\+"},
+    {"file": "foundations__layout__breakpoints__large-extra-large.md", "pattern": "margin of 24dp"}]},
+  "layout.gutter": {"status": "impl", "evidence": [], "gap": "no gutter value on m3.material.io (text)"},
+  "layout.pane-spacer": {"status": "ok", "evidence": [
+    {"file": "foundations__layout__breakpoints__medium.md", "pattern": "spacer between panes is also 24dp"},
+    {"file": "foundations__layout__breakpoints__expanded.md", "pattern": "spacer between panes is 24dp"},
+    {"file": "foundations__layout__breakpoints__large-extra-large.md", "pattern": "spacer between panes is 24dp"}]},
+  "layout.grid": {"status": "ok", "evidence": [{"file": "foundations__layout__grids-spacing__grids.md", "pattern": "Grids adapt across breakpoints"}]},
+  "a11y.touch-target": {"status": "ok", "evidence": [{"file": "foundations__*.md", "pattern": "at least 48 ?x ?48 ?dp"}]},
+  "a11y.touch-gap": {"status": "ok", "evidence": [{"file": "foundations__*.md", "pattern": "targets separated by 8dp of space or more"}]},
+  "a11y.contrast.text": {"status": "ok", "evidence": [{"file": "foundations__designing__color-contrast.md", "pattern": "Small text \\| At least 4\\.5:1"}]},
+  "a11y.contrast.ui": {"status": "ok", "evidence": [
+    {"file": "foundations__designing__color-contrast.md", "pattern": "graphics \\| At least 3:1"},
+    {"file": "*.md", "pattern": "Use the outline color role, instead of outline variant, to ensure a minimum 3:1"}]},
+  "a11y.contrast.level.medium": {"status": "partial", "gap": "the levels exist but 0.5 is not on the site (it comes from material-color-utilities)", "evidence": [{"file": "styles__color__*.md", "pattern": "three contrast levels"}]},
+  "a11y.contrast.level.high": {"status": "partial", "gap": "the levels exist but 1.0 is not on the site (it comes from material-color-utilities)", "evidence": [{"file": "styles__color__*.md", "pattern": "three contrast levels"}]},
+  "a11y.contrast.prefers-more": {"status": "impl", "evidence": [], "gap": "CSS media query hook, not an M3 spec item"},
+  "a11y.reduced-motion": {"status": "ok", "evidence": [
+    {"file": "styles__motion__*.md", "pattern": "Use subtle fades instead of intense sliding or scaling"},
+    {"file": "styles__motion__*.md", "pattern": "Disable decorative effects like parallax or shape morphing"}]},
+  "a11y.focus": {"status": "ok", "evidence": [{"file": "foundations__interaction__states__*.md", "pattern": "ring-like keyboard focus indicator"}]},
+  "a11y.disabled": {"status": "ok", "evidence": [
+    {"in": "css", "pattern": "-disabled-container-opacity: 0\\.12"},
+    {"in": "css", "pattern": "-disabled-label-text-opacity: 0\\.38"},
+    {"file": "foundations__interaction__states__applying-states.md", "pattern": "Disabled states don.t need to meet"}]},
+  "state.layer": {"status": "ok", "evidence": [{"file": "foundations__interaction__states__state-layers.md", "pattern": "overlay with a fixed opacity for each state"}]},
+  "state.focus-state-layer-opacity": {"status": "ok", "evidence": [{"file": "foundations__interaction__states__state-layers.md", "pattern": "Focus \\+10% opacity"}]},
+  "state.pressed-state-layer-opacity": {"status": "ok", "evidence": [{"file": "foundations__interaction__states__state-layers.md", "pattern": "Press \\+10% opacity"}]},
+  "color.theme.light": {"status": "ok", "evidence": [{"file": "styles__color__*.md", "pattern": "adapt to light and dark theme"}]},
+  "color.theme.dark": {"status": "ok", "evidence": [{"file": "styles__color__*.md", "pattern": "Automatic dark theme"}]},
+  "color.scrim": {"status": "ok", "evidence": [{"file": "styles__elevation__applying-elevation.md", "pattern": "opacity of 32%"}]},
+  "surface.base": {"status": "ok", "evidence": [{"file": "*.md", "pattern": "Any color roles starting with .on-. are guaranteed to have sufficient contrast"}]}
+}

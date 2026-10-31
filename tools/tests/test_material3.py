@@ -66,7 +66,7 @@ class GuidelineCount(unittest.TestCase):
         by_src = collections.Counter(g["source"] for g in GUIDES)
         with_css = sum(1 for g in GUIDES if g["css"])
         print(f"\nMaterial 3 guidelines declared: {len(GUIDES)} "
-              f"(token={by_src['token']}, spec={by_src['spec']}); with CSS: {with_css}; "
+              f"({dict(by_src)}); with CSS: {with_css}; "
               f"present in m3.css: {len(GUIDES) - len(missing)}; missing: {len(missing)}")
         print("by category:", dict(sorted(collections.Counter(g['category'] for g in GUIDES).items())))
         self.assertEqual(with_css, len(GUIDES), "a guideline without CSS")
@@ -146,12 +146,38 @@ class LightDark(unittest.TestCase):
 
 
 class Spacing(unittest.TestCase):
-    def test_spacing_is_on_the_4dp_grid(self):
-        from math import isclose
+    """m3.material.io/styles/spacing/tokens: base unit space100 = 8dp, range 0x-9x, nested 0.25x/0.5x/0.75x/1.25x."""
+
+    def test_spacing_tokens_match_the_site(self):
+        got = {}
         for g in GUIDES:
-            if g["id"].startswith("spacing.step."):
-                dp = float(g["css"][0].split(": ")[1].replace("rem", "")) * 16
-                self.assertTrue(isclose(dp % 4, 0), g["id"])
+            if g["id"].startswith("spacing."):
+                name, val = g["css"][0].split(": ")
+                got[name.replace("--md-sys-measurement-", "")] = float(val.replace("rem", "")) * 16
+        want = {"space0": 0, "space25": 2, "space50": 4, "space75": 6, "space100": 8, "space125": 10}
+        want.update({f"space{n * 100}": n * 8 for n in range(2, 10)})
+        self.assertEqual(got, want)
+        for name, dp in got.items():
+            self.assertIn(f"--md-sys-measurement-{name}: {dp / 16:g}rem;", CSS)
+
+
+class Sources(unittest.TestCase):
+    def test_sources_are_known_and_counted(self):
+        by = collections.Counter(g["source"] for g in GUIDES)
+        self.assertEqual(set(by), {"token", "site", "spec", "impl"})
+        self.assertEqual(by["site"], 2)
+        self.assertEqual(by["impl"], 2)
+
+    def test_site_overrides_are_recorded_and_applied(self):
+        self.assertEqual(TOKENS["overrides"]["state.focus-state-layer-opacity"], {"package": "0.12", "site": "0.1"})
+        self.assertEqual(TOKENS["overrides"]["state.pressed-state-layer-opacity"], {"package": "0.12", "site": "0.1"})
+        self.assertIn("--md-sys-state-focus-state-layer-opacity: 0.1;", CSS)
+        self.assertIn("--md-sys-state-hover-state-layer-opacity: 0.08;", CSS)
+
+    def test_disabled_opacities_are_the_packages_own(self):
+        """The 12% / 38% of a11y.disabled are not on the site, but the official component tokens use them."""
+        vals = {v for comp in TOKENS["components"].values() for k, v in comp.items() if "disabled" in k and "opacity" in k}
+        self.assertTrue({"0.12", "0.38"} <= vals, vals)
 
 
 if __name__ == "__main__":

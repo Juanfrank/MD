@@ -1896,10 +1896,10 @@
   "id": "state.focus-state-layer-opacity",
   "category": "state-layers",
   "title": "State focus-state-layer-opacity",
-  "rule": "0.12",
-  "source": "token",
+  "rule": "0.1",
+  "source": "site",
   "css": [
-   "--md-sys-state-focus-state-layer-opacity: 0.12"
+   "--md-sys-state-focus-state-layer-opacity: 0.1"
   ]
  },
  {
@@ -1916,10 +1916,10 @@
   "id": "state.pressed-state-layer-opacity",
   "category": "state-layers",
   "title": "State pressed-state-layer-opacity",
-  "rule": "0.12",
-  "source": "token",
+  "rule": "0.1",
+  "source": "site",
   "css": [
-   "--md-sys-state-pressed-state-layer-opacity: 0.12"
+   "--md-sys-state-pressed-state-layer-opacity: 0.1"
   ]
  },
  {
@@ -6003,140 +6003,150 @@
   ]
  },
  {
-  "id": "spacing.step.0",
+  "id": "spacing.space0",
   "category": "spacing",
-  "title": "Spacing step 0dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space0 = 0dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-0: 0.0rem"
+   "--md-sys-measurement-space0: 0rem"
   ]
  },
  {
-  "id": "spacing.step.1",
+  "id": "spacing.space25",
   "category": "spacing",
-  "title": "Spacing step 4dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space25 = 2dp (nested unit of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-1: 0.25rem"
+   "--md-sys-measurement-space25: 0.125rem"
   ]
  },
  {
-  "id": "spacing.step.2",
+  "id": "spacing.space50",
   "category": "spacing",
-  "title": "Spacing step 8dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space50 = 4dp (nested unit of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-2: 0.5rem"
+   "--md-sys-measurement-space50: 0.25rem"
   ]
  },
  {
-  "id": "spacing.step.3",
+  "id": "spacing.space75",
   "category": "spacing",
-  "title": "Spacing step 12dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space75 = 6dp (nested unit of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-3: 0.75rem"
+   "--md-sys-measurement-space75: 0.375rem"
   ]
  },
  {
-  "id": "spacing.step.4",
+  "id": "spacing.space100",
   "category": "spacing",
-  "title": "Spacing step 16dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space100 = 8dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-4: 1.0rem"
+   "--md-sys-measurement-space100: 0.5rem"
   ]
  },
  {
-  "id": "spacing.step.5",
+  "id": "spacing.space125",
   "category": "spacing",
-  "title": "Spacing step 20dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space125 = 10dp (nested unit of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-5: 1.25rem"
+   "--md-sys-measurement-space125: 0.625rem"
   ]
  },
  {
-  "id": "spacing.step.6",
+  "id": "spacing.space200",
   "category": "spacing",
-  "title": "Spacing step 24dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space200 = 16dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-6: 1.5rem"
+   "--md-sys-measurement-space200: 1rem"
   ]
  },
  {
-  "id": "spacing.step.7",
+  "id": "spacing.space300",
   "category": "spacing",
-  "title": "Spacing step 28dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space300 = 24dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-7: 1.75rem"
+   "--md-sys-measurement-space300: 1.5rem"
   ]
  },
  {
-  "id": "spacing.step.8",
+  "id": "spacing.space400",
   "category": "spacing",
-  "title": "Spacing step 32dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space400 = 32dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-8: 2.0rem"
+   "--md-sys-measurement-space400: 2rem"
   ]
  },
  {
-  "id": "spacing.step.10",
+  "id": "spacing.space500",
   "category": "spacing",
-  "title": "Spacing step 40dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space500 = 40dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-10: 2.5rem"
+   "--md-sys-measurement-space500: 2.5rem"
   ]
  },
  {
-  "id": "spacing.step.12",
+  "id": "spacing.space600",
   "category": "spacing",
-  "title": "Spacing step 48dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space600 = 48dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-12: 3.0rem"
+   "--md-sys-measurement-space600: 3rem"
   ]
  },
  {
-  "id": "spacing.step.14",
+  "id": "spacing.space700",
   "category": "spacing",
-  "title": "Spacing step 56dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space700 = 56dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-14: 3.5rem"
+   "--md-sys-measurement-space700: 3.5rem"
   ]
  },
  {
-  "id": "spacing.step.16",
+  "id": "spacing.space800",
   "category": "spacing",
-  "title": "Spacing step 64dp (4dp/8dp baseline grid)",
-  "rule": "Spacing between objects and padding use multiples of 4dp (8dp for layout)",
+  "title": "Spacing space800 = 64dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
   "source": "spec",
   "css": [
-   "--md-sys-spacing-16: 4.0rem"
+   "--md-sys-measurement-space800: 4rem"
+  ]
+ },
+ {
+  "id": "spacing.space900",
+  "category": "spacing",
+  "title": "Spacing space900 = 72dp (multiple of the 8dp base)",
+  "rule": "Spacing is a multiple of the 8dp base unit (space100); the only nested units are 2, 4, 6 and 10dp",
+  "source": "spec",
+  "css": [
+   "--md-sys-measurement-space900: 4.5rem"
   ]
  },
  {
   "id": "layout.window.compact",
   "category": "layout",
-  "title": "Window size class compact (>= 0dp)",
-  "rule": "4 columns, 16dp margins, 8dp gutters",
+  "title": "Breakpoint compact (>= 0dp; formerly window size class)",
+  "rule": "4 columns, 16dp margins",
   "source": "spec",
   "css": [
    "--md-sys-layout-columns: 4",
@@ -6146,8 +6156,8 @@
  {
   "id": "layout.window.medium",
   "category": "layout",
-  "title": "Window size class medium (>= 600dp)",
-  "rule": "8 columns, 24dp margins, 8dp gutters",
+  "title": "Breakpoint medium (>= 600dp; formerly window size class)",
+  "rule": "8 columns, 24dp margins",
   "source": "spec",
   "css": [
    "--md-sys-layout-columns: 8",
@@ -6157,8 +6167,8 @@
  {
   "id": "layout.window.expanded",
   "category": "layout",
-  "title": "Window size class expanded (>= 840dp)",
-  "rule": "12 columns, 24dp margins, 8dp gutters",
+  "title": "Breakpoint expanded (>= 840dp; formerly window size class)",
+  "rule": "12 columns, 24dp margins",
   "source": "spec",
   "css": [
    "--md-sys-layout-columns: 12",
@@ -6168,8 +6178,8 @@
  {
   "id": "layout.window.large",
   "category": "layout",
-  "title": "Window size class large (>= 1200dp)",
-  "rule": "12 columns, 24dp margins, 8dp gutters",
+  "title": "Breakpoint large (>= 1200dp; formerly window size class)",
+  "rule": "12 columns, 24dp margins",
   "source": "spec",
   "css": [
    "--md-sys-layout-columns: 12",
@@ -6179,8 +6189,8 @@
  {
   "id": "layout.window.extra-large",
   "category": "layout",
-  "title": "Window size class extra-large (>= 1600dp)",
-  "rule": "12 columns, 24dp margins, 8dp gutters",
+  "title": "Breakpoint extra-large (>= 1600dp; formerly window size class)",
+  "rule": "12 columns, 24dp margins",
   "source": "spec",
   "css": [
    "--md-sys-layout-columns: 12",
@@ -6191,8 +6201,8 @@
   "id": "layout.gutter",
   "category": "layout",
   "title": "Column gutter",
-  "rule": "8dp between grid columns",
-  "source": "spec",
+  "rule": "8dp between grid columns (implementation choice: m3.material.io states no gutter value)",
+  "source": "impl",
   "css": [
    "--md-sys-layout-gutter"
   ]
@@ -6201,7 +6211,7 @@
   "id": "layout.pane-spacer",
   "category": "layout",
   "title": "Pane spacer",
-  "rule": "24dp between panes on large windows",
+  "rule": "24dp between panes (medium breakpoint and up)",
   "source": "spec",
   "css": [
    "--md-sys-layout-pane-spacer"
@@ -6211,7 +6221,7 @@
   "id": "layout.grid",
   "category": "layout",
   "title": "Responsive column grid",
-  "rule": "Grid with columns, margins and gutters per window class",
+  "rule": "Grid with columns and margins per breakpoint",
   "source": "spec",
   "css": [
    ".md-layout {"
@@ -6263,7 +6273,7 @@
   "id": "a11y.contrast.level.medium",
   "category": "accessibility",
   "title": "Contrast level medium",
-  "rule": "DynamicScheme contrastLevel 0.5",
+  "rule": "DynamicScheme contrastLevel 0.5 (m3.material.io names the levels but gives no numbers; the value comes from material-color-utilities)",
   "source": "spec",
   "css": [
    "data-contrast=\"medium\""
@@ -6273,7 +6283,7 @@
   "id": "a11y.contrast.level.high",
   "category": "accessibility",
   "title": "Contrast level high",
-  "rule": "DynamicScheme contrastLevel 1.0",
+  "rule": "DynamicScheme contrastLevel 1.0 (m3.material.io names the levels but gives no numbers; the value comes from material-color-utilities)",
   "source": "spec",
   "css": [
    "data-contrast=\"high\""
@@ -6283,8 +6293,8 @@
   "id": "a11y.contrast.prefers-more",
   "category": "accessibility",
   "title": "Honour prefers-contrast",
-  "rule": "Switch to higher contrast on request",
-  "source": "spec",
+  "rule": "Hook only: switch to higher contrast on request (a CSS media query, not an M3 spec item)",
+  "source": "impl",
   "css": [
    "prefers-contrast: more"
   ]
@@ -6293,7 +6303,7 @@
   "id": "a11y.reduced-motion",
   "category": "accessibility",
   "title": "Honour prefers-reduced-motion",
-  "rule": "Shorten/remove transitions",
+  "rule": "With reduced motion on: use subtle fades instead of slide/scale, no parallax or shape morphing (m3.material.io). This CSS only zeroes the short durations; transform-based effects are up to the app",
   "source": "spec",
   "css": [
    "prefers-reduced-motion: reduce"
